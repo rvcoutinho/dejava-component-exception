@@ -13,24 +13,6 @@
 
 	<name>Exception</name>
 
-	<repositories>
-		<repository>
-			<id>dejava-components-releases</id>
-			<url>https://github.com/rvcoutinho/dejava/raw/master/components/maven/releases</url>
-		</repository>
-	</repositories>
-
-	<distributionManagement>
-		<repository>
-			<id>dejava-components-releases-local</id>
-			<url>file:../maven/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>dejava-components-snapshots-local</id>
-			<url>file:../maven/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-
 	<build>
 		<plugins>
 			<plugin>

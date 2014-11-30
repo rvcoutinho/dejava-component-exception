@@ -2,11 +2,8 @@ package org.dejava.component.exception.localized.checked;
 
 import java.util.Locale;
 
-import org.dejava.component.exception.constant.ErrorKeys;
 import org.dejava.component.exception.localized.ExceptionMessageCommand;
 import org.dejava.component.exception.localized.LocalizedException;
-import org.dejava.component.exception.util.MessageTypes;
-import org.dejava.component.i18n.message.handler.ApplicationMessageHandler;
 import org.dejava.component.i18n.message.handler.MessageCommand;
 import org.dejava.component.i18n.message.handler.MessageHandler;
 import org.dejava.component.i18n.message.handler.impl.SimpleMessageHandler;
@@ -28,7 +25,7 @@ public abstract class AbstractLocalizedException extends Exception implements Lo
 
 	/**
 	 * Gets the message handler to be used in order to render localized exception messages.
-	 * 
+	 *
 	 * @return The message handler to be used in order to render localized exception messages.
 	 */
 	public MessageHandler getMessageHandler() {
@@ -43,7 +40,7 @@ public abstract class AbstractLocalizedException extends Exception implements Lo
 
 	/**
 	 * Sets the message handler to be used in order to render localized exception messages.
-	 * 
+	 *
 	 * @param messageHandler
 	 *            New message handler to be used in order to render localized exception messages.
 	 */
@@ -59,7 +56,7 @@ public abstract class AbstractLocalizedException extends Exception implements Lo
 
 	/**
 	 * Gets the message command for the localized exception.
-	 * 
+	 *
 	 * @return The message command for the localized exception.
 	 */
 	public MessageCommand getMessageCommand() {
@@ -74,7 +71,7 @@ public abstract class AbstractLocalizedException extends Exception implements Lo
 
 	/**
 	 * Sets the message command for the localized exception.
-	 * 
+	 *
 	 * @param messageCommand
 	 *            New message command for the localized exception.
 	 */
@@ -85,7 +82,7 @@ public abstract class AbstractLocalizedException extends Exception implements Lo
 
 	/**
 	 * Gets the locale to be used in the localized message retrieval.
-	 * 
+	 *
 	 * @return The locale to be used in the localized message retrieval.
 	 */
 	public Locale getLocale() {
@@ -94,7 +91,7 @@ public abstract class AbstractLocalizedException extends Exception implements Lo
 
 	/**
 	 * Sets the locale to be used in the localized message retrieval.
-	 * 
+	 *
 	 * @param locale
 	 *            New locale to be used in the localized message retrieval.
 	 */
@@ -111,7 +108,7 @@ public abstract class AbstractLocalizedException extends Exception implements Lo
 
 	/**
 	 * Basic constructor.
-	 * 
+	 *
 	 * @param type
 	 *            The type for the message.
 	 * @param messageKey
@@ -159,43 +156,5 @@ public abstract class AbstractLocalizedException extends Exception implements Lo
 			// Ensures that the previous locale is restored.
 			setLocale(locale);
 		}
-	}
-
-	/**
-	 * Add messages from the given exception to the application.
-	 * 
-	 * @param appMessageHandler
-	 *            The application message handler.
-	 * @param recursive
-	 *            If the exception cause should add messages as well.
-	 */
-	protected void addLocalizedMessages(final ApplicationMessageHandler appMessageHandler,
-			final Boolean recursive) {
-		// Adds the message for the current exception.
-		getMessageCommand().addMessage(appMessageHandler);
-		// If the exception cause should add messages as well.
-		if (recursive) {
-			// If the current exception has a registered cause.
-			if (getCause() != null) {
-				// If the it is a localized exception.
-				if (getCause() instanceof LocalizedException) {
-					((LocalizedException) getCause()).addLocalizedMessages(appMessageHandler);
-				}
-				// If it is not.
-				else {
-					// Adds a generic error message.
-					appMessageHandler.addMessage(MessageTypes.Error.class, getLocale(), ErrorKeys.GENERIC,
-							null);
-				}
-			}
-		}
-	}
-
-	/**
-	 * @see org.dejava.component.exception.localized.LocalizedException#addLocalizedMessages(org.dejava.component.i18n.message.handler.ApplicationMessageHandler)
-	 */
-	@Override
-	public void addLocalizedMessages(final ApplicationMessageHandler messageHandler) {
-		addLocalizedMessages(messageHandler, true);
 	}
 }
