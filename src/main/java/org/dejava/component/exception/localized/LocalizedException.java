@@ -25,6 +25,13 @@ public interface LocalizedException {
 	void setMessageCommand(final MessageCommand messageCommand);
 
 	/**
+	 * Gets the message command for the localized exception.
+	 * 
+	 * @return The message command for the localized exception.
+	 */
+	MessageCommand getMessageCommand();
+
+	/**
 	 * Gets the localized message for the exception.
 	 *
 	 * @return The localized message for the exception.

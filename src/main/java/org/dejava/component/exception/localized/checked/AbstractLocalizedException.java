@@ -59,6 +59,7 @@ public abstract class AbstractLocalizedException extends Exception implements Lo
 	 *
 	 * @return The message command for the localized exception.
 	 */
+	@Override
 	public MessageCommand getMessageCommand() {
 		// If the message command is null.
 		if (messageCommand == null) {

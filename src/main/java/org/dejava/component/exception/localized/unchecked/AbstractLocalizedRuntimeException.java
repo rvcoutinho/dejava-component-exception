@@ -12,7 +12,7 @@ import org.dejava.component.i18n.message.handler.impl.SimpleMessageHandler;
  * General localized runtime exception.
  */
 public abstract class AbstractLocalizedRuntimeException extends RuntimeException implements
-LocalizedException {
+		LocalizedException {
 
 	/**
 	 * Generated serial.
@@ -60,6 +60,7 @@ LocalizedException {
 	 *
 	 * @return The messageCommand.
 	 */
+	@Override
 	public MessageCommand getMessageCommand() {
 		// If the message command is null.
 		if (messageCommand == null) {
